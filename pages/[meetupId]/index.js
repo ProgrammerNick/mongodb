@@ -20,25 +20,25 @@ function MeetupDetails(props) {
   );
 }
 
-export async function getStaticPaths() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://first_user:toor@cluster0.4f3chaf.mongodb.net/meetups?retryWrites=true&w=majority"
-  );
-  const db = client.db();
+// export async function getStaticPaths() {
+//   const client = await MongoClient.connect(
+//     "mongodb+srv://first_user:toor@cluster0.4f3chaf.mongodb.net/meetups?retryWrites=true&w=majority"
+//   );
+//   const db = client.db();
 
-  const meetupsCollection = db.collection("meetups");
+//   const meetupsCollection = db.collection("meetups");
 
-  const meetups = await meetupsCollection.find({}, { _id: 1 }).toArray();
+//   const meetups = await meetupsCollection.find({}, { _id: 1 }).toArray();
 
-  client.close();
+//   client.close();
 
-  return {
-    fallback: false,
-    paths: meetups.map((meetup) => ({
-      params: { meetupId: meetup._id.toString() },
-    })),
-  };
-}
+//   return {
+//     fallback: false,
+//     paths: meetups.map((meetup) => ({
+//       params: { meetupId: meetup._id.toString() },
+//     })),
+//   };
+// }
 
 export async function getStaticProps(context) {
   // fetch data for a single meetup
